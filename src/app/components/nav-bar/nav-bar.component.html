@@ -1,0 +1,37 @@
+<!-- <div class="wrapper">
+    <a routerLink="login">login</a> <br/>
+    <a routerLink="admin" >admin</a><br/>
+    <a routerLink="customer">customer</a><br/>
+    <a routerLink="company" >company</a><br/>
+    <a routerLink="shopPage" >shopPage</a><br/>
+
+
+</div>  -->
+<!-- <mat-toolbar color="accent">
+<div class="wrapper">
+            <a routerLink="login">login</a> <br/>
+            <a routerLink="admin">admin</a><br/>
+             <a routerLink="customer">customer</a><br/>
+              <a routerLink="company" >company</a><br/>
+               <a routerLink="shopPage" >shopPage</a><br/>
+</div>
+</mat-toolbar> -->
+
+    
+<mat-toolbar color="accent">
+    <a routerLink="login">login</a> <br/>
+    <a routerLink="shopPage" >shopPage</a><br/>
+    <div class="wrapper">
+    
+<button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">Menu
+    <mat-icon>menu</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu" >
+    <button mat-menu-item routerLink="userPanel">
+        <!-- <mat-icon>notifications_off</mat-icon> -->
+        <span>User Panel</span>
+      </button>
+  </mat-menu>
+</div>
+</mat-toolbar> 
+

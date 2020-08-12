@@ -1,0 +1,33 @@
+<div>
+    <form [formGroup]="loginForm">
+        <mat-form-field>
+            <mat-label>
+                Email
+            </mat-label>
+            <input type="text" matInput formControlName="email"/>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>
+                Password
+            </mat-label>
+            <input type="password" matInput formControlName="password"/>
+        </mat-form-field><br/>
+        
+        <mat-form-field>
+            <mat-label>ClientType</mat-label>
+            <mat-select formControlName="clientType">
+                <mat-option *ngFor="let type of clientTypes" [value]="type">
+                    {{ type }}
+                </mat-option>
+            </mat-select>
+            <!-- <mat-label>
+                clientType
+            </mat-label>
+            <input type="text" matInput formControlName="clientType"/> -->
+        </mat-form-field><br/>
+        <br/>
+        <button (click)="login2()">Login</button>
+    </form>
+    <br/>
+    <button (click)="logout()">Logout</button>
+</div>

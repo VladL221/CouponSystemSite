@@ -1,0 +1,6 @@
+<h1>All coupons:</h1>
+<ul>
+    <li *ngFor="let coupon of coupon"> <img src="assets\Coup.png" alt="none"> TITLE: {{coupon.title}}, DESC:  {{coupon.description}} , {{coupon.startDate}} - {{coupon.endDate}} , Amount: {{coupon.amount}}, price: {{coupon.price}} , image: {{coupon.image}},  Category: {{coupon.category}}
+        <input type="button" value="Buy" (click)="buyCoupon(coupon)" *ngIf="userType === 'customer'"/>
+    </li>
+</ul><br/>

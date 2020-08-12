@@ -1,0 +1,56 @@
+<div>
+    <span>
+        <button mat-raised-button (click)="showDetails()">Your information</button>
+        <span *ngIf="clicked"> name: {{customer.firstName}} | Last name: {{customer.lastName}} | Email: {{customer.email}} | Password: {{customer.password}}</span>
+       </span><br/><br/>
+
+<H1>All Purchased coupons:</H1>
+<div *ngIf="coupons">
+<ul>
+    <li *ngFor="let coupon of coupons"> 
+        title: {{coupon.title}}, 
+        description: {{coupon.description}}, 
+        startDate:{{coupon.startDate}}, 
+        endDate:{{coupon.endDate}}, 
+        amount: {{coupon.amount}}, 
+        price: {{coupon.price}}, 
+        image: {{coupon.image}}, 
+        category: {{coupon.category}}
+    </li>
+</ul>
+
+
+</div><br/>
+
+<mat-slide-toggle [formControl]="priceFilter">Max Price</mat-slide-toggle><br/>
+<mat-slide-toggle [formControl]="categoryFilter">Category</mat-slide-toggle><br/>
+
+
+ <div *ngIf="priceFilter.value">
+    <mat-form-field>
+        <input type="number" matInput placeholder="Enter maximum price" [formControl]="maxPrice"/>
+    </mat-form-field>
+    <button mat-raised-button (click)="getCouponsByMaxPrice()">Filter</button>
+</div><br/>
+
+<div *ngIf="categoryFilter.value">
+    <mat-form-field>
+        <mat-select [formControl]="categoryType" placeholder="Choose category">
+          <mat-option value="Spa">Spa</mat-option>
+          <mat-option value="Food">Food</mat-option>
+          <mat-option value="Vacation">Vacation</mat-option>
+          <mat-option value="Electronics">Electronics</mat-option>
+          <mat-option value="Restaurant">Restaurant</mat-option>
+          <mat-option value="Shoes">Shoes</mat-option>
+          <mat-option value="Clotthes">Clotthes</mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button mat-raised-button (click)="getCouponsByCategory()">Filter</button>
+</div><br/>
+
+<ul *ngIf="filterCoupons">
+    <li *ngFor="let fCoupon of filterCoupons">  CAT: {{fCoupon.category}}, TITLE: {{fCoupon.title}}, DESC: {{fCoupon.description}} | {{fCoupon.startDate}} - {{fCoupon.endDate}} | AMT: {{fCoupon.amount}}, PRICE: {{fCoupon.price}} | {{fCoupon.image}}</li>
+</ul><br/> 
+
+
+</div>

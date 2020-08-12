@@ -1,0 +1,141 @@
+
+<div>
+
+    <form [formGroup]="createCompanyForm"> <!-- CREATE NEW COMPANY FORM - EVERYTHING IS REQUIRED + EMAIL AND PASSWORD LENGTH (MAXIMUM 12) VALIDATION -->
+        <h1>Create company:</h1>
+        <mat-form-field>
+            <mat-label>Company name</mat-label>
+            <input type="text" matInput placeholder="Enter company name..." formControlName="name"/>
+            <mat-error *ngIf="cComForm()['name'].errors?.required && cComForm()['name'].touched">Company name is required!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Company email</mat-label>
+            <input type="email" matInput placeholder="Enter company email..." formControlName="companyEmail"/>
+            <mat-error *ngIf="cComForm()['companyEmail'].errors?.required && cComForm()['companyEmail'].touched">Company email is required!</mat-error>
+            <mat-error *ngIf="cComForm()['companyEmail'].errors?.email && cComForm()['companyEmail'].touched">Invalid email!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Company password</mat-label>
+            <input type="text" matInput placeholder="Enter company password..." formControlName="companyPassword"/>
+            <mat-error *ngIf="cComForm()['companyPassword'].errors?.required && cComForm()['companyPassword'].touched">Company password is required!</mat-error>
+            <mat-error *ngIf="cComForm()['companyPassword'].errors?.maxlength && cComForm()['companyPassword'].touched">Maximum password length is 12 characters!</mat-error>
+        </mat-form-field><br/><br/>
+        <button mat-raised-button (click)="addNewCompany()" [disabled]="!createCompanyForm.valid">Add Company</button>
+    </form><br/>
+
+    <form [formGroup]="createCustomerForm"> <!-- CREATE NEW CUSTOMER FORM - EVERYTHING IS REQUIRED-->
+        <h1>Create customer:</h1>
+        <mat-form-field>
+            <mat-label>Customer first name</mat-label>
+            <input type="text" matInput placeholder="Enter first name..." formControlName="fName"/>
+            <mat-error *ngIf="cCusForm()['fName'].errors?.required && cCusForm()['fName'].touched">First name is required!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Customer last name</mat-label>
+            <input type="text" matInput placeholder="Enter last name..." formControlName="lName"/>
+            <mat-error *ngIf="cCusForm()['lName'].errors?.required && cCusForm()['lName'].touched">Last name is required!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Customer email</mat-label>
+            <input type="email" matInput placeholder="Enter customer email..." formControlName="customerEmail"/>
+            <mat-error *ngIf="cCusForm()['customerEmail'].errors?.required && cCusForm()['customerEmail'].touched">Customer email is required!</mat-error>
+            <mat-error *ngIf="cCusForm()['customerEmail'].errors?.email && cCusForm()['customerEmail'].touched">Invalid email!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Customer password</mat-label>
+            <input type="text" matInput placeholder="Enter customer password..." formControlName="customerPassword"/>
+            <mat-error *ngIf="cCusForm()['customerPassword'].errors?.required && cCusForm()['customerPassword'].touched">Customer password is required!</mat-error>
+            <mat-error *ngIf="cCusForm()['customerPassword'].errors?.maxlength && cCusForm()['customerPassword'].touched">Maximum password length is 12 characters!</mat-error>
+        </mat-form-field><br/><br/>
+        <button mat-raised-button (click)="addNewCustomer()" [disabled]="!createCustomerForm.valid">Add Customer</button>
+    </form><br/>
+
+    <form [formGroup]="findOneCom"> <!-- FORM TO FIND A SINGLE COMPANY OR CUSTOMER BASED ON ID -->
+        <h1>Find one company or customer:</h1>
+        <mat-form-field>
+            <mat-label>Company ID</mat-label>
+            <input type="number" matInput placeholder="Enter company ID..." formControlName="companyId"/>
+            <mat-error *ngIf="fCom()['companyId'].errors?.required && fCom()['companyId'].touched">Company ID required for a search!</mat-error>
+        </mat-form-field>
+        <button mat-raised-button (click)="getOneCompany()" [disabled]="!findOneCom.valid">🔍</button><span *ngIf="oneCompany">ID: {{oneCompany.companyID}} | {{oneCompany.name}} | {{oneCompany.email}}, {{oneCompany.password}}</span>
+    </form><br/>
+
+    <form [formGroup]="findOneCus">
+        <mat-form-field>
+            <mat-label>Customer ID</mat-label>
+            <input type="number" matInput placeholder="Enter customer ID..." formControlName="customerId"/>
+            <mat-error *ngIf="fCus()['customerId'].errors?.required && fCus()['customerId'].touched">Customer ID is required for a search!</mat-error>
+        </mat-form-field>
+        <button mat-raised-button (click)="getOneCustomer()" [disabled]="!findOneCus.valid">🔍</button><span *ngIf="oneCustomer">ID: {{oneCustomer.customerID}} | {{oneCustomer.firstName}} {{oneCustomer.lastName}} | {{oneCustomer.email}}, {{oneCustomer.password}}</span>
+    </form><br/>
+
+    <h1>All companies:</h1><button mat-raised-button (click)="getAllCompanies()">Refresh</button> <!-- REFRESH BUTTON EVEN IF WE USE NGONINIT -->
+    <ul>
+        <li *ngFor="let company of companies">ID: {{company.companyID}} | {{company.name}} | {{company.email}}, {{company.password}}
+            <button mat-raised-button (click)="updateComOpen(company)">Update</button> <!-- OPEN THE UPDATE FORM AND SEND DEFAULT VALUES  -->
+            <button mat-raised-button (click)="deleteCompany(company.companyID)">Delete</button> <!-- DELETE COMPANY -->
+        </li>
+    </ul><br/>
+    <form [formGroup]="updateCompanyForm" *ngIf="updateCom === true"> <!-- UPDATE FORM ONLY OPENS WHEN YOU CLICK UPDATE ABOVE ^^^ -->
+        <mat-form-field>
+            <mat-label>Update name</mat-label>
+            <input type="text" matInput placeholder="Update company name..." formControlName="nameUpdate"/>
+            <mat-error *ngIf="uComForm()['nameUpdate'].errors?.required && uComForm()['nameUpdate'].touched">Company name is required!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Update email</mat-label>
+            <input type="email" matInput placeholder="Update company email..." formControlName="companyUpEmail"/>
+            <mat-error *ngIf="uComForm()['companyUpEmail'].errors?.required && uComForm()['companyUpEmail'].touched">Company email is required!</mat-error>
+            <mat-error *ngIf="uComForm()['companyUpEmail'].errors?.email && uComForm()['companyUpEmail'].touched">Invalid email!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Update password</mat-label>
+            <input type="text" matInput placeholder="Update company password..." formControlName="companyUpPassword"/>
+            <mat-error *ngIf="uComForm()['companyUpPassword'].errors?.required && uComForm()['companyUpPassword'].touched">Company password is required!</mat-error>
+            <mat-error *ngIf="uComForm()['companyUpPassword'].errors?.maxlength && uComForm()['companyUpPassword'].touched">Maximum password length is 12 characters!</mat-error>
+        </mat-form-field><br/><br/>
+        <button mat-raised-button (click)="updateCompany()" [disabled]="!updateCompanyForm.valid">Update</button><button mat-raised-button (click)="updateComClose()">Cancel</button>
+    </form><br/>
+
+    <h1>All customers</h1><button mat-raised-button (click)="getAllCustomers()">Refresh</button> <!-- REFRESH BUTTON EVEN IF WE USE NGONINIT -->
+    <ul>
+        <li *ngFor="let customer of customers">ID: {{customer.customerID}} | {{customer.firstName}} {{customer.lastName}} | {{customer.email}}, {{customer.password}}
+            <button mat-raised-button (click)="updateCusOpen(customer)">Update</button> <!-- OPEN THE UPDATE FORM AND SEND DEFAULT VALUES  -->
+            <button mat-raised-button (click)="deleteCustomer(customer.customerID)">Delete</button> <!-- DELETE CUSTOMER -->
+        </li>
+    </ul><br/>
+    <form [formGroup]="updateCustomerForm" *ngIf="updateCus === true"> <!-- UPDATE FORM ONLY OPENS WHEN YOU CLICK UPDATE ABOVE ^^^ -->
+        <mat-form-field>
+            <mat-label>Update first name</mat-label>
+            <input type="text" matInput placeholder="Update first name..." formControlName="fNameUpdate"/>
+            <mat-error *ngIf="uCusForm()['fNameUpdate'].errors?.required && uCusForm()['fNameUpdate'].touched">First name is required!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Update last name</mat-label>
+            <input type="text" matInput placeholder="Update last name..." formControlName="lNameUpdate"/>
+            <mat-error *ngIf="uCusForm()['lNameUpdate'].errors?.required && uCusForm()['lNameUpdate'].touched">Last name is required!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Update email</mat-label>
+            <input type="email" matInput placeholder="Update customer email..." formControlName="customerUpEmail"/>
+            <mat-error *ngIf="uCusForm()['customerUpEmail'].errors?.required && uCusForm()['customerUpEmail'].touched">Customer email is required!</mat-error>
+            <mat-error *ngIf="uCusForm()['customerUpEmail'].errors?.email && uCusForm()['customerUpEmail'].touched">Invalid email!</mat-error>
+        </mat-form-field><br/>
+        <mat-form-field>
+            <mat-label>Update password</mat-label>
+            <input type="text" matInput placeholder="Update customer password..." formControlName="customerUpPassword"/>
+            <mat-error *ngIf="uCusForm()['customerUpPassword'].errors?.required && uCusForm()['customerUpPassword'].touched">Customer password is required!</mat-error>
+            <mat-error *ngIf="uCusForm()['customerUpPassword'].errors?.maxlength && uCusForm()['customerUpPassword'].touched">Maximum password length is 12 characters!</mat-error>
+        </mat-form-field><br/><br/>
+        <button mat-raised-button (click)="updateCustomer()" [disabled]="!updateCustomerForm.valid">Update</button><button mat-raised-button (click)="updateCusClose()">Cancel</button>
+    </form><br/>
+
+    <button (click)="goLogs()">Loggs</button>
+
+</div>
+
+
+    
+
+
+

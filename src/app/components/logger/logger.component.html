@@ -1,0 +1,14 @@
+<div>
+    <button (click)="compLogs()">Companies logs</button>
+
+    <h2>All loggs!</h2>
+<ul>
+    <li *ngFor="let log of loggs">
+       LogId: {{log.id}}, ClientId:  {{log.clientId}}, ClientType:  {{log.clientType}}, executionDate:  {{log.executionDate}}, Description: {{log.description}}, Amount:  {{log.amount}}
+    </li>
+</ul><br/>
+
+
+
+
+</div>
