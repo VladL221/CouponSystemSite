@@ -81,6 +81,7 @@
             <button mat-raised-button (click)="openCouponUpdate(coupon)">Update</button><button mat-raised-button (click)="deleteCoupon(coupon.couponID)">Delete</button>
         </li>
     </ul><br/>
+    
     <form [formGroup]="updateCouponForm" *ngIf="updateCou === true">
         <mat-form-field>
             <mat-select formControlName="categoryUp" placeholder="Category">

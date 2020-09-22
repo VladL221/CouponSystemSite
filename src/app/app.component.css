@@ -1,22 +1,45 @@
-footer {
-  position: absolute;
-  bottom: 0;
+ .footer {
+  background-color: red;
+  position: relative;
+  bottom: 0px;
   width: 100%;
-  height: 2.5rem;
+  align-self: end;
+  height: auto;
+}
+ .wrapper {
+   position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 80px 58px 1fr 85px;
+  min-height: 100%;
+  height: 100%;
+  grid-template-areas: "header"
+                        "nav"
+                        "main"
+                        "footer";
 }
 
- .wrapper {
-  position: relative;
-  min-height: 100vh;
+
+
+.nav{
+ position: relative;
+ background-color: black;
+ grid-area: nav;
 }
 
 .main {
-  padding-bottom: 2.5rem;
+  background-color: blue;
+  align-self: flex-start;
+  height: 100%;
+  grid-area: main;
 }
-/*
+
 .header {
-  grid-column-start: 1;
-  grid-column-end: 1;
-  grid-row-start: row1-start;
-  grid-row-end: 2;
-} */
+  width: 100%;
+  padding-top: 1px;
+  background-color: green;
+  grid-area: header;
+ 
+
+}
+

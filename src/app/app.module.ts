@@ -31,6 +31,12 @@ import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { LoggerComponent } from './components/logger/logger.component';
 import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import {MatCardModule} from '@angular/material/card';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatTabsModule} from '@angular/material/tabs';
 
 
 
@@ -49,7 +55,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     CompanyComponent,
     UserPanelComponent,
     LoggerComponent,
-    SignUpComponent
+    SignUpComponent,
+    HomePageComponent,
+    AboutUsComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -68,7 +77,10 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
     MatButtonModule,
     MatMenuModule,
     MatIconModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatCardModule,
+    MatSidenavModule,
+    MatTabsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

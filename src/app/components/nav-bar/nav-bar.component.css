@@ -1,13 +1,60 @@
 
 .wrapper {
-align-content: right;
-position: absolute;
-right: 0px;
-width: 85px;
+background-color: red;
+border: none;
+
 }
 
-a {
-     font-size:20px ;
-     padding: 10px;
+
+
+.container{
+
+     display: grid;
+     grid-template-columns: 1fr 70px;
+     background-color: aqua;
+
 }
 
+.navbar{
+     
+     
+     background-color: rebeccapurple;
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+justify-content: center;
+align-items: center;
+     
+
+}
+.button {
+     background-color:#2d3436;
+     border: none;
+     color: white;
+     padding: 15px 32px;
+     text-align: center;
+     text-decoration: none;
+     display: inline-block;
+     font-size: 16px;
+     margin: 4px 2px;
+     cursor: pointer;
+     border-radius: 12px;
+     width: 100px;
+    
+   }
+
+   .home{
+     order: 1;
+}
+
+.login {
+ order: 2;
+ text-align: center;
+}
+.admin{
+     order: 4;
+}
+
+.shop{
+    order: 3;
+}

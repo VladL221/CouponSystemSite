@@ -86,8 +86,10 @@ export class AdminComponent implements OnInit {
     });
 
     // GET ALL CUSTOMER TO SHOW THE ADMIN ON LOAD
-    this.adminService.getAllCustomers(this.loginService.getUserToken()).subscribe((customers)=>{
-      this.customers = customers;
+    this.adminService.getAllCustomers(this.loginService.getUserToken()).subscribe((res)=>{
+      this.customers = res;
+    },(err)=>{
+      console.log(err.error);
     });
 
   }
@@ -232,8 +234,14 @@ export class AdminComponent implements OnInit {
 
   // IF WE WANT TO REFRESH THE LIST OF ALL CUSTOMER WITHOUT RELOADING THE PAGE
   public getAllCustomers() {
-    this.adminService.getAllCustomers(this.loginService.getUserToken()).subscribe((customers)=>{
-      this.customers = customers;
+    this.adminService.getAllCustomers(this.loginService.getUserToken()).subscribe((res)=>{
+      if(res !== null){
+        this.customers = res;
+      }else{
+        console.log(res);
+      }
+    },(err)=>{
+      console.log(err);
     });
   }
 

@@ -1,5 +1,6 @@
 import { LoginService } from 'src/app/services/login.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-nav-bar',
@@ -8,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavBarComponent implements OnInit {
 
-  constructor(private LoginService:LoginService) { }
+  constructor(private LoginService:LoginService,private route:Router) { }
 
   userType:string = null;
 
@@ -23,31 +24,33 @@ export class NavBarComponent implements OnInit {
   
 
   ngOnInit(): void {
-    
-    switch (this.userType) {
+    this.userType = this.LoginService.getUserType();
 
-        case "admin":
-          this.admin == true;
-        break;
-        case "company":
-        this.company == true;
-        break;
-        case "customer":
-        this.customer == true;
-        break;
-    
-      default:
+    // switch (this.userType) {
 
-        break;
-    }
+    //     case "admin":
+    //       this.admin == true;
+    //     break;
+    //     case "company":
+    //     this.company == true;
+    //     break;
+    //     case "customer":
+    //     this.customer == true;
+    //     break;
+    
+    //   default:
+
+    //     break;
+    // }
 
   
 
 
-    this.userType = this.LoginService.getUserType();
+
     
     
   }
+
 
   
 

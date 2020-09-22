@@ -18,7 +18,8 @@ export class UserPanelComponent implements OnInit {
       alert("Please log in!");
       this.router.navigateByUrl('login');
     }else{
-      this.router.navigateByUrl(''+this.loginService.getUserType()+'')
+      this.router.navigateByUrl('/'+this.loginService.getUserType()+'');
+      console.log(this.loginService.getUserType());
     }
   
   }
