@@ -1,6 +1,26 @@
 .container{
-    display: inline;
-    margin-left: auto;
-    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding-top: 20px;
+    border-top-style: ridge;
+    border-right-style: inset;
+    border-left-style: inset;
+    border-bottom-style: ridge;
+    border-width: 8px 5px;
+    margin-top: 50px;
+    margin-left: 400px;
+    margin-right: 400px;
+    background-color: aqua;
+    align-items: center;
+    padding-bottom: 20px;
+}
+
+.title{
+order: 1;
+}
+.info{
+order: 2;
 }
 

@@ -11,6 +11,10 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { UserPanelComponent } from './components/user-panel/user-panel.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FAQComponent } from './components/faq/faq.component';
+
 
 
 
@@ -23,12 +27,13 @@ const routes: Routes = [
   {path:"header",component:HeaderComponent},
   {path:"footer",component:FooterComponent},
   {path: "", redirectTo: "home", pathMatch: "full"},
-  {path:"**",redirectTo:"/404"},
   {path:"userPanel",component:UserPanelComponent},
   {path:"logger",component:LoggerComponent},
   {path:"home",component:HomePageComponent},
-  {path:"404",component:PageNotFoundComponent}
-  
+  {path:"aboutus",component:AboutUsComponent},
+  {path:"contactUs",component:ContactUsComponent},
+  {path:"FAQ",component:FAQComponent},
+  {path:"**",component:PageNotFoundComponent}
 ];
 
 @NgModule({

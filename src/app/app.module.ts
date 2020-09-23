@@ -9,8 +9,6 @@ import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { MenuNavComponent } from './components/menu-nav/menu-nav.component';
-import { UserNavComponent } from './components/user-nav/user-nav.component';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -37,6 +35,8 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import {MatCardModule} from '@angular/material/card';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
+import { ContactUsComponent } from './components/contact-us/contact-us.component';
+import { FAQComponent } from './components/faq/faq.component';
 
 
 
@@ -45,8 +45,6 @@ import {MatTabsModule} from '@angular/material/tabs';
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    MenuNavComponent,
-    UserNavComponent,
     LoginPageComponent,
     NavBarComponent,
     AdminComponent,
@@ -59,6 +57,8 @@ import {MatTabsModule} from '@angular/material/tabs';
     HomePageComponent,
     AboutUsComponent,
     PageNotFoundComponent,
+    ContactUsComponent,
+    FAQComponent,
   ],
   imports: [
     BrowserModule,

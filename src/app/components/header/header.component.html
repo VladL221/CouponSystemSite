@@ -1,5 +1,10 @@
 <div class="container">
- <img src="assets\Coup.png" alt="none"> <h1 class="title">Coupons2Go</h1>
+    <span class="img_title">
+        <img src="assets\Coup.png" alt="i made this :)" class="img" class="img"><h1 class="title">Coupons2Go</h1>
+    </span>
+    <div class="box" (click)="clicked()" [ngStyle]="{'height':expandHeigth}">
+        <span class="arrow"><mat-icon class="left_arrow">{{arrow}}</mat-icon><h4 class="expand_text">Expand</h4></span>
+    </div>
 </div>
 
 
