@@ -4,7 +4,7 @@ import { CompanyComponent } from './components/company/company.component';
 import { CustomerComponent } from './components/customer/customer.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, CanActivate } from '@angular/router';
 import { LoginPageComponent } from './components/login-page/login-page.component';
 import { ShopPageComponent } from './components/shop-page/shop-page.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -14,15 +14,19 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { FAQComponent } from './components/faq/faq.component';
+import { SignUpComponent } from './components/sign-up/sign-up.component';
+import { AdminGuardGuard } from './RouteGuards/admin-guard.guard';
+import { CustomerGuardGuard } from './RouteGuards/customer-guard.guard';
+import { CompanyGuardGuard } from './RouteGuards/company-guard.guard';
 
 
 
 
 const routes: Routes = [
   {path:"login",component:LoginPageComponent},
-  {path:"admin",component:AdminComponent},
-  {path:"customer",component:CustomerComponent},
-  {path:"company",component:CompanyComponent},
+  {path:"admin",component:AdminComponent,canActivate:[AdminGuardGuard]},
+  {path:"customer",component:CustomerComponent,canActivate:[CustomerGuardGuard]},
+  {path:"company",component:CompanyComponent,canActivate:[CompanyGuardGuard]},
   {path:"shopPage",component:ShopPageComponent},
   {path:"header",component:HeaderComponent},
   {path:"footer",component:FooterComponent},
@@ -32,6 +36,7 @@ const routes: Routes = [
   {path:"home",component:HomePageComponent},
   {path:"aboutus",component:AboutUsComponent},
   {path:"contactUs",component:ContactUsComponent},
+  {path:"signUp",component:SignUpComponent},
   {path:"FAQ",component:FAQComponent},
   {path:"**",component:PageNotFoundComponent}
 ];

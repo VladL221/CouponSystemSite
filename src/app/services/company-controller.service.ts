@@ -8,8 +8,11 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class CompanyControllerService {
+  
+
 
   constructor(private http:HttpClient) { }
+
 
   createCoupon(token:string, coupon:Coupon){
     return this.http.post<Coupon>("http://localhost:8080/company/create/coupon/" + token, coupon);

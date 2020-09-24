@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/services/login.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,9 +10,12 @@ export class HomePageComponent implements OnInit {
 
 
 
-  constructor() { }
+  constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
+      this.loginService.changeUserName(sessionStorage.getItem('userName'));
+    
+    
   }
 
 

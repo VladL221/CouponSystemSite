@@ -14,19 +14,23 @@ export class AdminControllerService {
   adminUrl:string = "http://localhost:8080/admin/";
   creatComp:string = "http://localhost:8080/admin/create/";
   getComp:string = "http://localhost:8080/admin/find/one/company/"
+  isAuthenticate:boolean = false;
 
   constructor(private http:HttpClient,private loginService:LoginService) { }
 
 
 
-// public addCompany(comp:Company,token:string){
-//    return this.http.post(this.creatComp+(comp)+"/"+token ,{ observe: 'response', responseType:'text'});
-// }
+  public authenticateCheck(email:string,password:string,clientType:string){
+    if(email === "admin@admin" && password === "admin" && clientType === "admin"){
+      this.isAuthenticate = true;
+    }else{
+      this.isAuthenticate = false;
+    }
 
-// public getCompany(id:string,token:string):Observable<any>{
+  }
 
-//   return this.http.get(this.getComp+id+"/"+token,{ observe: 'response', responseType:'text'});
-// }
+
+
 
 createCompany(token:string,company:Company){
   return this.http.post<Company>("http://localhost:8080/admin/create/company/" +token,company,{ observe: 'response'});

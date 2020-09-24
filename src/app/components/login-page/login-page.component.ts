@@ -1,8 +1,11 @@
+import { AdminControllerService } from './../../services/admin-controller.service';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from 'src/app/Modules/user';
+import { CustomerControllerService } from 'src/app/services/customer-controller.service';
+import { CompanyControllerService } from 'src/app/services/company-controller.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,11 +14,12 @@ import { User } from 'src/app/Modules/user';
 })
 export class LoginPageComponent implements OnInit {
 
-  constructor(private loginService:LoginService,private fb:FormBuilder,private route:Router) { }
+  constructor(private loginService:LoginService,private fb:FormBuilder,private route:Router,private customerService:CustomerControllerService
+    ,private companyService:CompanyControllerService,private adminService:AdminControllerService) { }
 
   token:string = null;
 
-  
+
   loginUser:User;
 
 
@@ -37,12 +41,14 @@ export class LoginPageComponent implements OnInit {
 
 
   public login2(){
+    
     if(this.getUser().clientType === "admin"){
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res) =>{
       if(res.status === 200){
-
-     
+      this.authCheck(this.getUser().email,this.getUser().password,this.getUser().clientType);
       this.loginGood(res.body,this.getUser().clientType);
+      this.newUserName("Admin");
+      this.loginService.setUserNameConst("Admin");
       alert("Loggin successfull welcome Admin! You will be redirected now");
       this.route.navigateByUrl('/');
     }else{
@@ -55,6 +61,13 @@ export class LoginPageComponent implements OnInit {
     });
   }else if(this.getUser().clientType === "company"){
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res)=>{
+      this.authCheck(this.getUser().email,this.getUser().password,this.getUser().clientType);
+      this.companyService.companyDetails(res.body).subscribe((comp)=>{
+      this.newUserName(comp.name);
+      this.loginService.setUserNameConst(comp.name);
+      },(err)=>{
+        console.log(err);
+      });
       this.loginGood(res.body,this.getUser().clientType);
       alert("Loggin successfull welcome! You will be redirected now");
       this.route.navigateByUrl('/');
@@ -68,8 +81,14 @@ export class LoginPageComponent implements OnInit {
   } else if(this.getUser().clientType === "customer"){
 
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res)=>{
+      this.authCheck(this.getUser().email,this.getUser().password,this.getUser().clientType);
+      this.customerService.getCustomerDetails(res.body).subscribe((cust)=>{
+        this.newUserName(cust.firstName);
+        this.loginService.setUserNameConst(cust.firstName);
+      },(err)=>{
+        console.log(err);
+      });
       this.loginGood(res.body,this.getUser().clientType);
-      alert("Welcome "+this.getUser().email);
       alert("Loggin successfull welcome! You will be redirected now");
       this.route.navigateByUrl('/');
     },(err)=>{
@@ -82,9 +101,10 @@ export class LoginPageComponent implements OnInit {
   }
   }
 
-  logout(){
+  public logout(){
     this.loginService.badLogin();
-    this.ngOnInit();
+    this.newUserName("Guest");
+    this.route.navigateByUrl('/');
   }
 
   public getUser(){
@@ -97,8 +117,19 @@ export class LoginPageComponent implements OnInit {
   
   }
 
+  newUserName(type:string){
+    this.loginService.changeUserName(type);
+    this.loginService.setUserNameConst(type);
+  }
+
   public loginBad() {
     this.loginService.badLogin();
+    this.newUserName("Guest");
+    this.route.navigateByUrl('/');
+  }
+
+  public authCheck(email:string,password:string,clientType:string){
+    this.adminService.authenticateCheck(email,password,clientType);
   }
 
 

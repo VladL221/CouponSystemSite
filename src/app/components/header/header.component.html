@@ -1,9 +1,14 @@
 <div class="container">
     <span class="img_title">
-        <img src="assets\Coup.png" alt="i made this :)" class="img" class="img"><h1 class="title">Coupons2Go</h1>
+        <img src="assets\Coup.png" alt="i made this :)" class="img"><h1 class="title">Coupons2Go</h1>
     </span>
-    <div class="box" (click)="clicked()" [ngStyle]="{'height':expandHeigth}">
-        <span class="arrow"><mat-icon class="left_arrow">{{arrow}}</mat-icon><h4 class="expand_text">Expand</h4></span>
+    <div class="box"  (click)="clicked()"  [ngStyle]="{'height':expandHeigth}">
+        <!-- <span class="arrow"><mat-icon class="left_arrow">{{arrow}}</mat-icon><h4 class="expand_text">Expand</h4></span> -->
+        <span class="welcome_name"><h2>Welcome! {{userName}}</h2></span>
+            <div class="login_signup" *ngIf="userName === 'Guest'"> 
+            <button class="button login" routerLink="login">SignIn</button>/<button class="button signup" routerLink="signUp">SignUp</button>
+             </div>
+             <div> <button class="button" (click)="logOut()">SignOut</button> </div>
     </div>
 </div>
 

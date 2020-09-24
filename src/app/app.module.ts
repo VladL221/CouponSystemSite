@@ -1,3 +1,4 @@
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -37,7 +38,6 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { FAQComponent } from './components/faq/faq.component';
-
 
 
 @NgModule({
@@ -80,7 +80,8 @@ import { FAQComponent } from './components/faq/faq.component';
     MatSlideToggleModule,
     MatCardModule,
     MatSidenavModule,
-    MatTabsModule
+    MatTabsModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

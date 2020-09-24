@@ -52,14 +52,70 @@ padding-top: 3px;
 
 .box{
     grid-area: box;
-    width: 300px;
+    width: 150px;
     margin-left: auto;
     border: 1px solid blue;
     margin-top: 2px;
    background-color: gray;
     border-right-style: none;
     transition: 2s;
-    border-radius: 5px 0px 0px 35px;
+    border-radius: 5px 0px 0px 20px;
     z-index: 10;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    grid-template-areas: "welcomeUser welcomeUser"
+                          "login_signup login_signup";
+    
 
 }
+
+
+.welcome_name{
+    top: 1px;
+    grid-area: welcomeUser;
+    background-color: red;
+    height: 30px;
+}
+.login{
+  margin-top: 3px;
+  margin-left: 3px;
+}
+
+.login_signup{
+    grid-area: login_signup;
+    margin-top: 2px;
+    margin-left: 1px;
+    margin-bottom: 20px;
+    border-style: groove;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: baseline;
+    flex-direction: row;    
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+.signUp{
+
+}
+
+.button {
+    padding: 1px;
+    background-color:#2d3436;
+    border-style: double;
+    color: #f0f0f0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    /* margin: 4px 2px; */
+    cursor: pointer;
+    border-radius: 40px;
+    width: 70px;
+    height: 30px;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+
+  
+  }
