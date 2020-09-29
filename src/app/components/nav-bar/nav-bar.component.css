@@ -1,46 +1,49 @@
 
-.wrapper {
-background-color: red;
-border: none;
-
-}
 
 
 
-.container{
-
-     display: grid;
-     grid-template-columns: 1fr 70px;
-     background-color: aqua;
-
-}
 
 .navbar{
      
      
-     background-color: rebeccapurple;
+     background: rgb(255,255,255);
+background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(1,79,82,1) 3%, rgba(130,250,255,1) 27%, rgba(130,250,255,0.19091386554621848) 51%, rgba(0,252,250,0) 100%);
 display: flex;
 flex-direction: row;
 flex-wrap: nowrap;
-justify-content: center;
+justify-content: space-evenly;
 align-items: center;
-     
+border-bottom-style: solid;
+border-color:  #00594f;
+width: 600px;
+margin-left: auto;
+margin-right: auto;
+border-radius: 50px;
 
 }
 .button {
+     outline: none;
      background-color:#2d3436;
      border: none;
-     color: white;
-     padding: 15px 32px;
+     color: aqua;
+     padding: 1px;
      text-align: center;
      text-decoration: none;
      display: inline-block;
      font-size: 16px;
-     margin: 4px 2px;
      cursor: pointer;
-     border-radius: 12px;
-     width: 100px;
+     border-radius: 8px;
+     width: 80px;
+     box-shadow: 0 0 3pt 2pt red;
+     /* box-shadow: 2px 2px 10px 2px black; */
+     height: 35px;
+     margin-bottom: 10px;
+     text-shadow: 0px 0px 3px white;
+          
     
+   }
+   .button:focus{
+     box-shadow: 0 0 5pt 2pt black;
    }
 
    .home{

@@ -1,143 +1,143 @@
-<div>
+<div class="container">
+    <mat-tab-group class="tabnav">
+        <mat-tab label="your Info"> <span>
+            <button mat-raised-button (click)="showDetails()">Your information</button>
+            <span *ngIf="company"> Company name: {{company.name}} | Email: {{company.email}} | Password: {{company.password}}</span>
+           </span> </mat-tab>
+        <mat-tab label="Create Coupon">
+             <form [formGroup]="createCouponForm">
+            <h1>Create coupon:</h1>
+            <mat-form-field>
+              <mat-select formControlName="category" placeholder="Category">
+                  <mat-option value="Spa">Spa</mat-option>
+                  <mat-option value="Food">Food</mat-option>
+                  <mat-option value="Vacation">Vacation</mat-option>
+                  <mat-option value="Electronics">Electronics</mat-option>
+                  <mat-option value="Restaurant">Restaurant</mat-option>
+                  <mat-option value="Shoes">Shoes</mat-option>
+                  <mat-option value="Clotthes">Clotthes</mat-option>
+              </mat-select>
+              <mat-error *ngIf="cCouForm()['category'].errors?.required && cCouForm()['category'].touched">Coupon category is required!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon title</mat-label>
+                <input type="text" matInput placeholder="Enter coupon title..." formControlName="title"/>
+                <mat-error *ngIf="cCouForm()['title'].errors?.required && cCouForm()['title'].touched">Coupon title is required!</mat-error>
+                <mat-error *ngIf="cCouForm()['title'].errors?.maxlength && cCouForm()['title'].touched">Maximum character length is 100!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon description</mat-label>
+                <input type="text" matInput placeholder="Enter coupon description..." formControlName="description"/>
+                <mat-error *ngIf="cCouForm()['description'].errors?.required && cCouForm()['description'].touched">Coupon description is required!</mat-error>
+                <mat-error *ngIf="cCouForm()['description'].errors?.maxlength && cCouForm()['description'].touched">Maximum character length is 200!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon start date</mat-label>
+                <input type="date" matInput placeholder="Enter coupon start date..." formControlName="startDate"/>
+                <mat-error *ngIf="cCouForm()['startDate'].errors?.required && cCouForm()['startDate'].touched">Coupon start date is required!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon end date</mat-label>
+                <input type="date" matInput placeholder="Enter coupon end date..." formControlName="endDate"/>
+                <mat-error *ngIf="cCouForm()['endDate'].errors?.required && cCouForm()['endDate'].touched">Coupon end date is required!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon amount</mat-label>
+                <input type="number" matInput placeholder="Enter coupon amount.." formControlName="amount"/>
+                <mat-error *ngIf="cCouForm()['amount'].errors?.required && cCouForm()['amount'].touched">Coupon amount is required!</mat-error>
+                <mat-error *ngIf="cCouForm()['amount'].errors?.min && cCouForm()['amount'].touched">Minimum amount must be above 0!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon price</mat-label>
+                <input type="number" matInput placeholder="Enter coupon price.." formControlName="price"/>
+                <mat-error *ngIf="cCouForm()['price'].errors?.required && cCouForm()['price'].touched">Coupon price is required!</mat-error>
+                <mat-error *ngIf="cCouForm()['price'].errors?.min && cCouForm()['price'].touched">Minimum price must be above 0!</mat-error>
+            </mat-form-field><br/>
+            <mat-form-field>
+                <mat-label>Coupon image</mat-label>
+                <input type="text" matInput placeholder="Enter coupon image.." formControlName="image"/>
+                <mat-error *ngIf="cCouForm()['image'].errors?.required && cCouForm()['image'].touched">Coupon image is required!</mat-error>
+            </mat-form-field><br/><br/>
+            <button mat-raised-button (click)="createCoupon()" [disabled]="!createCouponForm.valid">Add Coupon</button>
+        </form></mat-tab>
 
-    <span>
-     <button mat-raised-button (click)="showDetails()">Your information</button>
-     <span *ngIf="company"> Company name: {{company.name}} | Email: {{company.email}} | Password: {{company.password}}</span>
-    </span><br/><br/>
+        <mat-tab label="All coupons">
+            <h1>All of your coupons:</h1><input type="button" value="Refresh" (click)="findAllCoupons()"/>
+            <ul>
+                <li *ngFor="let coupon of coupons">  CAT: {{coupon.category}}, TITLE: {{coupon.title}}, DESC: {{coupon.description}} | {{coupon.startDate}} - {{coupon.endDate}} | AMT: {{coupon.amount}}, PRICE: {{coupon.price}} | {{coupon.image}}
+                    <button mat-raised-button (click)="openCouponUpdate(coupon)">Update</button><button mat-raised-button (click)="deleteCoupon(coupon.couponID)">Delete</button>
+                </li>
+            </ul> 
+            <form [formGroup]="updateCouponForm" *ngIf="updateCou === true">
+                <mat-form-field>
+                    <mat-select formControlName="categoryUp" placeholder="Category">
+                        <mat-option value="Spa">Spa</mat-option>
+                        <mat-option value="Food">Food</mat-option>
+                        <mat-option value="Vacation">Vacation</mat-option>
+                        <mat-option value="Electronics">Electronics</mat-option>
+                        <mat-option value="Restaurant">Restaurant</mat-option>
+                        <mat-option value="Shoes">Shoes</mat-option>
+                        <mat-option value="Clotthes">Clotthes</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="uCouForm()['categoryUp'].errors?.required && uCouForm()['categoryUp'].touched">Coupon category is required!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update title</mat-label>
+                      <input type="text" matInput placeholder="Update coupon title..." formControlName="titleUp"/>
+                      <mat-error *ngIf="uCouForm()['titleUp'].errors?.required && uCouForm()['titleUp'].touched">Coupon title is required!</mat-error>
+                      <mat-error *ngIf="uCouForm()['titleUp'].errors?.maxlength && uCouForm()['titleUp'].touched">Maximum character length is 100!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update description</mat-label>
+                      <input type="text" matInput placeholder="Update coupon description..." formControlName="descriptionUp"/>
+                      <mat-error *ngIf="uCouForm()['descriptionUp'].errors?.required && uCouForm()['descriptionUp'].touched">Coupon description is required!</mat-error>
+                      <mat-error *ngIf="uCouForm()['descriptionUp'].errors?.maxlength && uCouForm()['descriptionUp'].touched">Maximum character length is 200!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update start date</mat-label>
+                      <input type="date" matInput placeholder="Update coupon start date..." formControlName="startDateUp"/>
+                      <mat-error *ngIf="uCouForm()['startDateUp'].errors?.required && uCouForm()['startDateUp'].touched">Coupon start date is required!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update end date</mat-label>
+                      <input type="date" matInput placeholder="Update coupon end date..." formControlName="endDateUp"/>
+                      <mat-error *ngIf="uCouForm()['endDateUp'].errors?.required && uCouForm()['endDateUp'].touched">Coupon end date is required!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update amount</mat-label>
+                      <input type="number" matInput placeholder="Update coupon amount.." formControlName="amountUp"/>
+                      <mat-error *ngIf="uCouForm()['amountUp'].errors?.required && uCouForm()['amountUp'].touched">Coupon amount is required!</mat-error>
+                      <mat-error *ngIf="uCouForm()['amountUp'].errors?.min && uCouForm()['amountUp'].touched">Minimum amount must be above 0!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update price</mat-label>
+                      <input type="number" matInput placeholder="Update coupon price.." formControlName="priceUp"/>
+                      <mat-error *ngIf="uCouForm()['priceUp'].errors?.required && uCouForm()['priceUp'].touched">Coupon price is required!</mat-error>
+                      <mat-error *ngIf="uCouForm()['priceUp'].errors?.min && uCouForm()['priceUp'].touched">Minimum price must be above 0!</mat-error>
+                  </mat-form-field><br/>
+                  <mat-form-field>
+                      <mat-label>Update image</mat-label>
+                      <input type="text" matInput placeholder="Update coupon image.." formControlName="imageUp"/>
+                      <mat-error *ngIf="uCouForm()['imageUp'].errors?.required && uCouForm()['imageUp'].touched">Coupon image is required!</mat-error>
+                  </mat-form-field><br/><br/>
+                  <button mat-raised-button (click)="updateCoupon()" [disabled]="!updateCouponForm.valid">Update</button><button mat-raised-button (click)="closeCouponUpdate()">Cancel</button>
+            </form><br/>
+        </mat-tab>
 
+             <mat-tab label="Search Coupons">
+                <form [formGroup]="findOneForm">
+                    <h1>Find one coupon:</h1>
+                    <mat-form-field>
+                        <mat-label>Coupon ID</mat-label>
+                        <input type="number" matInput placeholder="Enter coupon ID..." formControlName="couponId"/>
+                        <mat-error>Coupon ID is required for a search!</mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button (click)="getOneCoupon()" [disabled]="!findOneForm.valid">🔍</button><span *ngIf="oneCoupon">
+                         CAT: {{oneCoupon.category}}, TITLE: {{oneCoupon.title}}, DESC: {{oneCoupon.description}} | {{oneCoupon.startDate}} - {{oneCoupon.endDate}} | AMT: {{oneCoupon.amount}}, PRICE: {{oneCoupon.price}} | {{oneCoupon.image}}
+                    </span>
+                </form>
 
-
-    <form [formGroup]="createCouponForm">
-        <h1>Create coupon:</h1>
-        <mat-form-field>
-          <mat-select formControlName="category" placeholder="Category">
-              <mat-option value="Spa">Spa</mat-option>
-              <mat-option value="Food">Food</mat-option>
-              <mat-option value="Vacation">Vacation</mat-option>
-              <mat-option value="Electronics">Electronics</mat-option>
-              <mat-option value="Restaurant">Restaurant</mat-option>
-              <mat-option value="Shoes">Shoes</mat-option>
-              <mat-option value="Clotthes">Clotthes</mat-option>
-          </mat-select>
-          <mat-error *ngIf="cCouForm()['category'].errors?.required && cCouForm()['category'].touched">Coupon category is required!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon title</mat-label>
-            <input type="text" matInput placeholder="Enter coupon title..." formControlName="title"/>
-            <mat-error *ngIf="cCouForm()['title'].errors?.required && cCouForm()['title'].touched">Coupon title is required!</mat-error>
-            <mat-error *ngIf="cCouForm()['title'].errors?.maxlength && cCouForm()['title'].touched">Maximum character length is 100!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon description</mat-label>
-            <input type="text" matInput placeholder="Enter coupon description..." formControlName="description"/>
-            <mat-error *ngIf="cCouForm()['description'].errors?.required && cCouForm()['description'].touched">Coupon description is required!</mat-error>
-            <mat-error *ngIf="cCouForm()['description'].errors?.maxlength && cCouForm()['description'].touched">Maximum character length is 200!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon start date</mat-label>
-            <input type="date" matInput placeholder="Enter coupon start date..." formControlName="startDate"/>
-            <mat-error *ngIf="cCouForm()['startDate'].errors?.required && cCouForm()['startDate'].touched">Coupon start date is required!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon end date</mat-label>
-            <input type="date" matInput placeholder="Enter coupon end date..." formControlName="endDate"/>
-            <mat-error *ngIf="cCouForm()['endDate'].errors?.required && cCouForm()['endDate'].touched">Coupon end date is required!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon amount</mat-label>
-            <input type="number" matInput placeholder="Enter coupon amount.." formControlName="amount"/>
-            <mat-error *ngIf="cCouForm()['amount'].errors?.required && cCouForm()['amount'].touched">Coupon amount is required!</mat-error>
-            <mat-error *ngIf="cCouForm()['amount'].errors?.min && cCouForm()['amount'].touched">Minimum amount must be above 0!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon price</mat-label>
-            <input type="number" matInput placeholder="Enter coupon price.." formControlName="price"/>
-            <mat-error *ngIf="cCouForm()['price'].errors?.required && cCouForm()['price'].touched">Coupon price is required!</mat-error>
-            <mat-error *ngIf="cCouForm()['price'].errors?.min && cCouForm()['price'].touched">Minimum price must be above 0!</mat-error>
-        </mat-form-field><br/>
-        <mat-form-field>
-            <mat-label>Coupon image</mat-label>
-            <input type="text" matInput placeholder="Enter coupon image.." formControlName="image"/>
-            <mat-error *ngIf="cCouForm()['image'].errors?.required && cCouForm()['image'].touched">Coupon image is required!</mat-error>
-        </mat-form-field><br/><br/>
-        <button mat-raised-button (click)="createCoupon()" [disabled]="!createCouponForm.valid">Add Coupon</button>
-    </form><br/>
-
-    <form [formGroup]="findOneForm">
-        <h1>Find one coupon:</h1>
-        <mat-form-field>
-            <mat-label>Coupon ID</mat-label>
-            <input type="number" matInput placeholder="Enter coupon ID..." formControlName="couponId"/>
-            <mat-error>Coupon ID is required for a search!</mat-error>
-        </mat-form-field>
-        <button mat-raised-button (click)="getOneCoupon()" [disabled]="!findOneForm.valid">🔍</button><span *ngIf="oneCoupon">
-             CAT: {{oneCoupon.category}}, TITLE: {{oneCoupon.title}}, DESC: {{oneCoupon.description}} | {{oneCoupon.startDate}} - {{oneCoupon.endDate}} | AMT: {{oneCoupon.amount}}, PRICE: {{oneCoupon.price}} | {{oneCoupon.image}}
-        </span>
-    </form><br/>
-
-    <h1>All of your coupons:</h1><input type="button" value="Refresh" (click)="findAllCoupons()"/>
-    <ul>
-        <li *ngFor="let coupon of coupons">  CAT: {{coupon.category}}, TITLE: {{coupon.title}}, DESC: {{coupon.description}} | {{coupon.startDate}} - {{coupon.endDate}} | AMT: {{coupon.amount}}, PRICE: {{coupon.price}} | {{coupon.image}}
-            <button mat-raised-button (click)="openCouponUpdate(coupon)">Update</button><button mat-raised-button (click)="deleteCoupon(coupon.couponID)">Delete</button>
-        </li>
-    </ul><br/>
-    
-    <form [formGroup]="updateCouponForm" *ngIf="updateCou === true">
-        <mat-form-field>
-            <mat-select formControlName="categoryUp" placeholder="Category">
-                <mat-option value="Spa">Spa</mat-option>
-                <mat-option value="Food">Food</mat-option>
-                <mat-option value="Vacation">Vacation</mat-option>
-                <mat-option value="Electronics">Electronics</mat-option>
-                <mat-option value="Restaurant">Restaurant</mat-option>
-                <mat-option value="Shoes">Shoes</mat-option>
-                <mat-option value="Clotthes">Clotthes</mat-option>
-            </mat-select>
-            <mat-error *ngIf="uCouForm()['categoryUp'].errors?.required && uCouForm()['categoryUp'].touched">Coupon category is required!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update title</mat-label>
-              <input type="text" matInput placeholder="Update coupon title..." formControlName="titleUp"/>
-              <mat-error *ngIf="uCouForm()['titleUp'].errors?.required && uCouForm()['titleUp'].touched">Coupon title is required!</mat-error>
-              <mat-error *ngIf="uCouForm()['titleUp'].errors?.maxlength && uCouForm()['titleUp'].touched">Maximum character length is 100!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update description</mat-label>
-              <input type="text" matInput placeholder="Update coupon description..." formControlName="descriptionUp"/>
-              <mat-error *ngIf="uCouForm()['descriptionUp'].errors?.required && uCouForm()['descriptionUp'].touched">Coupon description is required!</mat-error>
-              <mat-error *ngIf="uCouForm()['descriptionUp'].errors?.maxlength && uCouForm()['descriptionUp'].touched">Maximum character length is 200!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update start date</mat-label>
-              <input type="date" matInput placeholder="Update coupon start date..." formControlName="startDateUp"/>
-              <mat-error *ngIf="uCouForm()['startDateUp'].errors?.required && uCouForm()['startDateUp'].touched">Coupon start date is required!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update end date</mat-label>
-              <input type="date" matInput placeholder="Update coupon end date..." formControlName="endDateUp"/>
-              <mat-error *ngIf="uCouForm()['endDateUp'].errors?.required && uCouForm()['endDateUp'].touched">Coupon end date is required!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update amount</mat-label>
-              <input type="number" matInput placeholder="Update coupon amount.." formControlName="amountUp"/>
-              <mat-error *ngIf="uCouForm()['amountUp'].errors?.required && uCouForm()['amountUp'].touched">Coupon amount is required!</mat-error>
-              <mat-error *ngIf="uCouForm()['amountUp'].errors?.min && uCouForm()['amountUp'].touched">Minimum amount must be above 0!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update price</mat-label>
-              <input type="number" matInput placeholder="Update coupon price.." formControlName="priceUp"/>
-              <mat-error *ngIf="uCouForm()['priceUp'].errors?.required && uCouForm()['priceUp'].touched">Coupon price is required!</mat-error>
-              <mat-error *ngIf="uCouForm()['priceUp'].errors?.min && uCouForm()['priceUp'].touched">Minimum price must be above 0!</mat-error>
-          </mat-form-field><br/>
-          <mat-form-field>
-              <mat-label>Update image</mat-label>
-              <input type="text" matInput placeholder="Update coupon image.." formControlName="imageUp"/>
-              <mat-error *ngIf="uCouForm()['imageUp'].errors?.required && uCouForm()['imageUp'].touched">Coupon image is required!</mat-error>
-          </mat-form-field><br/><br/>
-          <button mat-raised-button (click)="updateCoupon()" [disabled]="!updateCouponForm.valid">Update</button><button mat-raised-button (click)="closeCouponUpdate()">Cancel</button>
-    </form><br/>
-    
-    <h1>Filter coupons:</h1>
+                <h1>Filter coupons:</h1>
     <mat-slide-toggle [formControl]="priceFilter">Max Price</mat-slide-toggle><br/>
     <mat-slide-toggle [formControl]="categoryFilter">Category</mat-slide-toggle><br/>
 
@@ -165,7 +165,11 @@
 
     <ul *ngIf="filterCoupons">
         <li *ngFor="let fCoupon of filterCoupons"><img src="assets\Coup.png" alt="none">  CAT: {{fCoupon.category}}, TITLE: {{fCoupon.title}}, DESC: {{fCoupon.description}} | {{fCoupon.startDate}} - {{fCoupon.endDate}} | AMT: {{fCoupon.amount}}, PRICE: {{fCoupon.price}} | {{fCoupon.image}}</li>
-    </ul><br/>
+    </ul>
+            
+            </mat-tab>
 
+      </mat-tab-group>
+    
 </div>
 

@@ -1,3 +1,4 @@
+import { CompanyControllerService } from 'src/app/services/company-controller.service';
 import { LoginService } from 'src/app/services/login.service';
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
@@ -8,17 +9,28 @@ import { Observable } from 'rxjs';
 })
 export class CompanyGuardGuard implements CanActivate {
 
-  constructor(private loginService:LoginService,private route:Router){}
+  constructor(private loginService:LoginService,private route:Router,private companyService:CompanyControllerService){}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-      if(this.loginService.isAuthenticate === true && this.loginService.getUserType() === "company")
-    return true;
-    else
-    alert("Not authorized to visit this page");
+      if(sessionStorage.getItem('auth2oC') === '1' && sessionStorage.getItem('userType')=== 'company'){
+        return true;
+        
+      }else{
+        alert("Not authorized to visit this page");
         this.route.navigateByUrl('/home'); 
     return false;
+      }
+   
+     
+    
+   
   }
+
+  // private pageRefresh(type:Boolean){
+    
+
+  // }
   
 }

@@ -38,6 +38,9 @@ import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatTabsModule} from '@angular/material/tabs';
 import { ContactUsComponent } from './components/contact-us/contact-us.component';
 import { FAQComponent } from './components/faq/faq.component';
+import { SettingsComponent } from './components/settings/settings.component';
+import { YourInfoComponent } from './components/company/your-info/your-info.component';
+import { CreateCouponComponent } from './components/company/create-coupon/create-coupon.component';
 
 
 @NgModule({
@@ -59,6 +62,9 @@ import { FAQComponent } from './components/faq/faq.component';
     PageNotFoundComponent,
     ContactUsComponent,
     FAQComponent,
+    SettingsComponent,
+    YourInfoComponent,
+    CreateCouponComponent,
   ],
   imports: [
     BrowserModule,

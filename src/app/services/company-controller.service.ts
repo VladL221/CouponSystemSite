@@ -1,3 +1,4 @@
+import { LoginService } from './login.service';
 import { Observable } from 'rxjs';
 import { Company } from './../Modules/company';
 import { Coupon } from './../Modules/coupon';
@@ -9,10 +10,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CompanyControllerService {
   
+  isAuthenticate:boolean = false;
+
+  auth:string = sessionStorage.getItem('auth2oC');
+
+  constructor(private http:HttpClient, private loginService:LoginService) { }
 
 
-  constructor(private http:HttpClient) { }
+  public setAuth(type:boolean){
+    this.isAuthenticate = type;
+    sessionStorage.setItem('auth2oC','1');
+  }
 
+  authCheck(type:boolean){
+    if(type === true && this.loginService.getUserType() === 'company'){
+      this.setAuth(type);
+    }else{
+      this.isAuthenticate = false;
+    }
+  }
 
   createCoupon(token:string, coupon:Coupon){
     return this.http.post<Coupon>("http://localhost:8080/company/create/coupon/" + token, coupon);

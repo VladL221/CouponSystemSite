@@ -16,13 +16,15 @@ export class AdminControllerService {
   getComp:string = "http://localhost:8080/admin/find/one/company/"
   isAuthenticate:boolean = false;
 
+  auth:string = sessionStorage.getItem('5ocfa1m912o');
+
   constructor(private http:HttpClient,private loginService:LoginService) { }
 
 
 
   public authenticateCheck(email:string,password:string,clientType:string){
-    if(email === "admin@admin" && password === "admin" && clientType === "admin"){
-      this.isAuthenticate = true;
+    if(email === "admin@admin.com" && password === "admin" && clientType === "admin"){
+      sessionStorage.setItem('5ocfa1m912o','91ave3');
     }else{
       this.isAuthenticate = false;
     }

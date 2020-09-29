@@ -15,23 +15,31 @@ export class LoginService {
    adminUrl:string = "http://localhost:8080/admin/";
    companyUrl:string = "http://localhost:8080/company/";
    customerUrl:string = "http://localhost:8080/customer/";
-  
-    private userNameSource = new BehaviorSubject<string>(this.getUserNameConst());
+
+   userNameDynamic:string = 'Guest';
+    private userNameSource = new BehaviorSubject<string>(this.userNameDynamic);
     currentUserName = this.userNameSource.asObservable();
 
    userToken: string = sessionStorage.getItem('userToken');
    userType:string = sessionStorage.getItem('userType');
    userNameConst:string = sessionStorage.getItem('userName');
-   isAuthenticate:boolean = false;
 
+  
+   
   constructor(private http:HttpClient) { }
 
+
+  
   changeUserName(type:string){
+    this.userNameDynamic = type;
     this.setUserNameConst(type);
-    this.userNameSource.next(sessionStorage.getItem('userName'));
+    this.userNameSource.next(type);
+    
+  
   }
 
   public setUserNameConst(type:string){
+    this.userNameDynamic = type;
     this.userNameConst = type;
     sessionStorage.setItem('userName',type);
   }
@@ -60,7 +68,9 @@ export class LoginService {
   }
 
 
-
+  public dynamicName(type:string){
+    
+  }
 
 
 
@@ -69,8 +79,6 @@ export class LoginService {
     this.userToken =  sessionStorage.getItem('userToken');
     sessionStorage.setItem('userType',userType)
     this.userType = sessionStorage.getItem('userType');
-    if(userType === "customer" || userType === "company"){
-    this.isAuthenticate = true;}else{this.badLogin();}
   
   }
 
@@ -82,9 +90,11 @@ export class LoginService {
   badLogin() {
     sessionStorage.removeItem('userType');
     this.userType = null;
-    this.isAuthenticate = false
     sessionStorage.setItem('userName','Guest');
     this.userNameConst = "Guest";
+    sessionStorage.removeItem('5ocfa1m912o');
+    sessionStorage.removeItem('auth2oC');
+    sessionStorage.removeItem('auth2oCu')
     this.logout().subscribe(
       (res) => {
         if (res.status === 200) { 

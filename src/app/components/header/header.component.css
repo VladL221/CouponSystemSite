@@ -1,23 +1,27 @@
 
 .img_title{
 grid-area: img_title;
-background-color: red;
+background-color: black;
 justify-content: center;
 align-items: center;
 display: grid;
-grid-template-columns: 1fr 1fr;
+grid-template-columns: 1fr;
+border-radius: 0px 0px 20px 0px;
+border-style: solid;
+box-shadow: 0 0 15pt 8pt red;
+width: 65%;
 }
 
 .title{
     position: absolute;
-    top: 10px;
-    left: 75px;
-    justify-content: center;
-    border-style: groove;
-}
-.img{
-    border-style: groove;
-align-self: baseline;
+    font-size: 45px;
+    justify-self: left;
+    padding-left: 20px;
+    color: white;
+  text-shadow: 1px 1px 2px rgb(75, 75, 75), 0 0 25px rgb(75, 75, 255), 0 0 5px rgb(75, 168, 255);
+  text-decoration: underline;
+  text-decoration-style:solid;
+  margin-top: 20px;
 }
 
 .arrow{
@@ -45,7 +49,7 @@ padding-top: 3px;
 .container{
     display: grid;
     grid-template-columns: repeat(8,1fr);
-    grid-template-areas: "img_title box box box box box box box";
+    grid-template-areas: "img_title img_title box box box box box box";
 }
 
 
@@ -76,6 +80,7 @@ padding-top: 3px;
     grid-area: welcomeUser;
     background-color: red;
     height: 30px;
+    
 }
 .login{
   margin-top: 3px;

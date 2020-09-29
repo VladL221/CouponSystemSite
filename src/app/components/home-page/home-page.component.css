@@ -12,9 +12,10 @@
     margin-top: 50px;
     margin-left: 400px;
     margin-right: 400px;
-    background-color: aqua;
     align-items: center;
     padding-bottom: 20px;
+    box-shadow: 0pt 0pt 15px 9px black;
+    border-radius: 15px;
 }
 
 .title{

@@ -1,5 +1,4 @@
  .footer {
-  background-color: red;
   position: relative;
   bottom: 0px;
   width: 100%;
@@ -23,12 +22,11 @@
 
 .nav{
  position: relative;
- background-color: black;
  grid-area: nav;
 }
 
 .main {
-  background-color: blue;
+
   align-self: flex-start;
   height: 100%;
   grid-area: main;
@@ -36,8 +34,7 @@
 
 .header {
   width: 100%;
-  padding-top: 1px;
-  background-color: green;
+  padding-top: 0px;
   grid-area: header;
  
 

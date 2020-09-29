@@ -1,3 +1,4 @@
+import { LoginService } from 'src/app/services/login.service';
 import { Coupon } from './../Modules/coupon';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
@@ -9,7 +10,22 @@ import { Customer } from '../Modules/customer';
 })
 export class CustomerControllerService {
 
-  constructor(private http:HttpClient) { }
+  isAuthenticate:boolean = false;
+
+  auth:string = sessionStorage.getItem('auth2oCu');
+
+
+
+  constructor(private http:HttpClient,private loginService:LoginService) { }
+
+  public authenticateCheck(type:boolean){
+    if(type === true && this.loginService.getUserType() === 'customer'){
+      this.isAuthenticate = true;
+      sessionStorage.setItem('auth2oCu','3ag4s');
+    }else{
+      this.isAuthenticate = false;
+    }
+  }
 
   purchaseCoupon(token:string, coupon:Coupon):Observable<any>{
     return this.http.post("http://localhost:8080/customer/purchase/" + token, coupon,{observe:"response",responseType:"text"});

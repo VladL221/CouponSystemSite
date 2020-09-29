@@ -18,6 +18,7 @@ import { SignUpComponent } from './components/sign-up/sign-up.component';
 import { AdminGuardGuard } from './RouteGuards/admin-guard.guard';
 import { CustomerGuardGuard } from './RouteGuards/customer-guard.guard';
 import { CompanyGuardGuard } from './RouteGuards/company-guard.guard';
+import { SettingsComponent } from './components/settings/settings.component';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
   {path:"aboutus",component:AboutUsComponent},
   {path:"contactUs",component:ContactUsComponent},
   {path:"signUp",component:SignUpComponent},
+  {path:"settings",component:SettingsComponent},
   {path:"FAQ",component:FAQComponent},
   {path:"**",component:PageNotFoundComponent}
 ];

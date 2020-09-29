@@ -14,7 +14,7 @@ export class AdminGuardGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean{
-       if(this.adminService.isAuthenticate === true){
+       if(sessionStorage.getItem('5ocfa1m912o') === '91ave3' && sessionStorage.getItem('userType') === 'admin' && sessionStorage.getItem('userName') === 'Admin'){
          return true;
        }else{
          alert("Not authorized to visit this page");

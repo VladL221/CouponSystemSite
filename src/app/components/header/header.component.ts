@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AdminControllerService } from 'src/app/services/admin-controller.service';
 import { LoginService } from 'src/app/services/login.service';
 
 @Component({
@@ -9,16 +10,14 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private loginService:LoginService,private route:Router) { }
+  constructor(private loginService:LoginService,private route:Router,private adminService:AdminControllerService) { }
 
 
 
   userName:string = "Guest";
   
-  loggedIn:boolean;
-
-  // userName:string = 
-
+  
+  appComponent:string;
 
 
   arrow:string;
@@ -27,17 +26,21 @@ export class HeaderComponent implements OnInit {
   status:boolean = false;
   transform = '';
   ngOnInit(): void {
-    this.loginService.currentUserName.subscribe(res => this.userName = res);
+    this.loginService.currentUserName.subscribe(res => this.userName = res);  
+    this.appComponent = sessionStorage.getItem('userType');
+    this.userName = sessionStorage.getItem('userName');
+    
+
+
     if(this.userName !== "Guest"){
       this.arrow = 'keyboard_arrow_down';
     }
-    
-
   }
 
   logOut(){
     this.loginService.badLogin();
-    this.route.navigateByUrl('/home');
+    this.route.navigateByUrl('home');
+    this.userName = 'Guest';
   }
 
 

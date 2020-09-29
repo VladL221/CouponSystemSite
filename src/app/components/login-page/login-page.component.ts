@@ -53,18 +53,19 @@ export class LoginPageComponent implements OnInit {
       this.route.navigateByUrl('/');
     }else{
       this.loginBad();
+      console.log("not 200");
     }
     },(err) =>{
       const error:String = err.error;
-      alert(error);
+      alert(error+" "+ err);
       this.loginBad();
     });
   }else if(this.getUser().clientType === "company"){
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res)=>{
-      this.authCheck(this.getUser().email,this.getUser().password,this.getUser().clientType);
       this.companyService.companyDetails(res.body).subscribe((comp)=>{
       this.newUserName(comp.name);
       this.loginService.setUserNameConst(comp.name);
+      this.companyService.authCheck(true);
       },(err)=>{
         console.log(err);
       });
@@ -81,10 +82,10 @@ export class LoginPageComponent implements OnInit {
   } else if(this.getUser().clientType === "customer"){
 
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res)=>{
-      this.authCheck(this.getUser().email,this.getUser().password,this.getUser().clientType);
       this.customerService.getCustomerDetails(res.body).subscribe((cust)=>{
         this.newUserName(cust.firstName);
         this.loginService.setUserNameConst(cust.firstName);
+        this.customerService.authenticateCheck(true);
       },(err)=>{
         console.log(err);
       });
