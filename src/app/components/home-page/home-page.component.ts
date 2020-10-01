@@ -8,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-
+  condition:boolean = false;
+  color1:string = "red";
 
   constructor(private loginService:LoginService) { }
 
@@ -17,6 +18,8 @@ export class HomePageComponent implements OnInit {
     
     
   }
-
+change(){
+  this.color1 = "green";
+}
 
 }

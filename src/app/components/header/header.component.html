@@ -2,15 +2,20 @@
     <span class="img_title">
        <h1 class="title">Coupons2Go</h1>
     </span>
-    <div class="box"  (click)="clicked()"  [ngStyle]="{'height':expandHeigth}">
+    <div class="box"  [ngStyle]="{'width':expandWidth}">
         <!-- <span class="arrow"><mat-icon class="left_arrow">{{arrow}}</mat-icon><h4 class="expand_text">Expand</h4></span> -->
         <span class="welcome_name"><h2>{{userName}}</h2></span>
             <div class="login_signup" *ngIf="userName === 'Guest'"> 
             <button class="button login" routerLink="login">SignIn</button>/<button class="button signup" routerLink="signUp">SignUp</button>
              </div>
              <div *ngIf="userName !== 'Guest'" >
-                  <button class="button" (click)="logOut()">SignOut</button> <button routerLink="{{appComponent}}" class="button">MyPanel</button>
-                  <button class="button" routerLink="settings">Settings</button>
+                  <!-- <button class="button" (click)="logOut()">SignOut</button>  --> <button  (click)="panelNav()" class="button">MyPanel</button>
+                  <!-- <button class="button" routerLink="settings">Settings</button> -->
+                 <div class="hamburgerContainer" (click)="transform()">
+                    <div class="bar1" [ngStyle]="{'transform':trans1}"></div>
+                    <div class="bar2" [ngStyle]="{'opacity':trans2}"></div>
+                    <div class="bar3" [ngStyle]="{'transform':trans3}"></div>
+                 </div>
             </div>
     </div>
 </div>

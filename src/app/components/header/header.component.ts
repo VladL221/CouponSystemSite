@@ -12,29 +12,26 @@ export class HeaderComponent implements OnInit {
 
   constructor(private loginService:LoginService,private route:Router,private adminService:AdminControllerService) { }
 
+trans1:string ='';
+trans2:string='';
+trans3:string='';
 
+  status:boolean = false;
+  norm:boolean = true;
 
   userName:string = "Guest";
-  
-  
-  appComponent:string;
+
 
 
   arrow:string;
-  expand = '120px';
-  expandHeigth = '73px';
-  status:boolean = false;
-  transform = '';
+  expandWidth = '150px';
+
   ngOnInit(): void {
     this.loginService.currentUserName.subscribe(res => this.userName = res);  
-    this.appComponent = sessionStorage.getItem('userType');
     this.userName = sessionStorage.getItem('userName');
-    
+  
 
 
-    if(this.userName !== "Guest"){
-      this.arrow = 'keyboard_arrow_down';
-    }
   }
 
   logOut(){
@@ -49,21 +46,40 @@ clicked(){
     if(this.status === false){
       this.status = true;
       this.arrow = 'keyboard_arrow_up';
-      this.expandHeigth = '200px';
+      this.expandWidth = '250px';
       }
       else{
         this.status = false;
         this.arrow = 'keyboard_arrow_down';
-        this.expandHeigth = '73px';
+        this.expandWidth = '150px';
       }
   }else{
     null;
   }
+}
 
+transform(){
+if(this.status === false){
+this.status = true;
+this.trans1 = 'rotate(-45deg) translate(-9px, 6px)';
+this.trans2 = '0';
+this.trans3 = 'rotate(45deg) translate(-8px, -8px)';
+this.expandWidth = '250px';
+}else{
+  this.status = false;
+  this.trans1 = '';
+  this.trans2 = '';
+  this.trans3 = '';
+  this.expandWidth = '150px';
+
+}
+}
+
+
+panelNav(){
+  this.route.navigateByUrl(sessionStorage.getItem('userType'));
+}
 
 }
 
 
-
-
-}

@@ -16,6 +16,7 @@
                         "nav"
                         "main"
                         "footer";
+  overflow-y: scroll;
 }
 
 
@@ -26,10 +27,11 @@
 }
 
 .main {
-
+  position: relative;
   align-self: flex-start;
   height: 100%;
   grid-area: main;
+  padding-bottom: 10px;
 }
 
 .header {

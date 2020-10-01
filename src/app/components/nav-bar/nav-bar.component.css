@@ -25,7 +25,7 @@ border-radius: 50px;
      outline: none;
      background-color:#2d3436;
      border: none;
-     color: aqua;
+     color: white;
      padding: 1px;
      text-align: center;
      text-decoration: none;
@@ -34,11 +34,10 @@ border-radius: 50px;
      cursor: pointer;
      border-radius: 8px;
      width: 80px;
-     box-shadow: 0 0 3pt 2pt red;
-     /* box-shadow: 2px 2px 10px 2px black; */
+     box-shadow: 0pt 0pt 1pt 2pt #00d2d3;
      height: 35px;
      margin-bottom: 10px;
-     text-shadow: 0px 0px 3px white;
+     text-shadow: 0px 0px 1pt 2pt white;
           
     
    }
