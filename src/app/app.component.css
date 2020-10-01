@@ -38,6 +38,7 @@
   width: 100%;
   padding-top: 0px;
   grid-area: header;
+  position: static;
  
 
 }
