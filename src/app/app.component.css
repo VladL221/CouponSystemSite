@@ -9,22 +9,16 @@
    position: relative;
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 80px 58px 1fr 85px;
+  grid-template-rows: 80px 1fr 85px;
   min-height: 100%;
   height: 100%;
   grid-template-areas: "header"
-                        "nav"
                         "main"
                         "footer";
   overflow-y: scroll;
 }
 
 
-
-.nav{
- position: relative;
- grid-area: nav;
-}
 
 .main {
   position: relative;

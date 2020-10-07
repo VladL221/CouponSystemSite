@@ -48,7 +48,6 @@ export class LoginPageComponent implements OnInit {
       this.authCheck(this.getUser().email,this.getUser().password,this.getUser().clientType);
       this.loginGood(res.body,this.getUser().clientType);
       this.newUserName("Admin");
-      this.loginService.setUserNameConst("Admin");
       alert("Loggin successfull welcome Admin! You will be redirected now");
       this.route.navigateByUrl('/');
     }else{
@@ -64,7 +63,6 @@ export class LoginPageComponent implements OnInit {
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res)=>{
       this.companyService.companyDetails(res.body).subscribe((comp)=>{
       this.newUserName(comp.name);
-      this.loginService.setUserNameConst(comp.name);
       this.companyService.authCheck(true);
       },(err)=>{
         console.log(err);
@@ -84,7 +82,6 @@ export class LoginPageComponent implements OnInit {
     this.loginService.login(this.getUser().email,this.getUser().password,this.getUser().clientType).subscribe((res)=>{
       this.customerService.getCustomerDetails(res.body).subscribe((cust)=>{
         this.newUserName(cust.firstName);
-        this.loginService.setUserNameConst(cust.firstName);
         this.customerService.authenticateCheck(true);
       },(err)=>{
         console.log(err);
@@ -120,7 +117,6 @@ export class LoginPageComponent implements OnInit {
 
   newUserName(type:string){
     this.loginService.changeUserName(type);
-    this.loginService.setUserNameConst(type);
   }
 
   public loginBad() {

@@ -14,7 +14,7 @@ export class HomePageComponent implements OnInit {
   constructor(private loginService:LoginService) { }
 
   ngOnInit(): void {
-      this.loginService.changeUserName(sessionStorage.getItem('userName'));
+      
     
     
   }

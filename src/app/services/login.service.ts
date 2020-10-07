@@ -15,14 +15,15 @@ export class LoginService {
    adminUrl:string = "http://localhost:8080/admin/";
    companyUrl:string = "http://localhost:8080/company/";
    customerUrl:string = "http://localhost:8080/customer/";
-
-   userNameDynamic:string = 'Guest';
-    private userNameSource = new BehaviorSubject<string>(this.userNameDynamic);
+  
+   
+    private userNameSource = new BehaviorSubject<string>(sessionStorage.getItem('userName'));
     currentUserName = this.userNameSource.asObservable();
 
    userToken: string = sessionStorage.getItem('userToken');
    userType:string = sessionStorage.getItem('userType');
-   userNameConst:string = sessionStorage.getItem('userName');
+
+   loggedId:string = sessionStorage.getItem('loggedIn');
 
   
    
@@ -31,22 +32,11 @@ export class LoginService {
 
   
   changeUserName(type:string){
-    this.userNameDynamic = type;
-    this.setUserNameConst(type);
+    sessionStorage.setItem('userName',type);
     this.userNameSource.next(type);
-    
-  
   }
 
-  public setUserNameConst(type:string){
-    this.userNameDynamic = type;
-    this.userNameConst = type;
-    sessionStorage.setItem('userName',type);
-  }
-  
-  public getUserNameConst(){
-    return this.userNameConst;
-  }
+
 
   getAllCoupons(){
     return this.http.get<Coupon[]>("http://localhost:8080/login/coupons");
@@ -91,7 +81,6 @@ export class LoginService {
     sessionStorage.removeItem('userType');
     this.userType = null;
     sessionStorage.setItem('userName','Guest');
-    this.userNameConst = "Guest";
     sessionStorage.removeItem('5ocfa1m912o');
     sessionStorage.removeItem('auth2oC');
     sessionStorage.removeItem('auth2oCu')
