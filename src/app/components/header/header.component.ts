@@ -28,7 +28,10 @@ trans3:string='';
   expandHeight = '71px';
   ngOnInit(): void {
     this.loginService.currentUserName.subscribe(res => this.userName = res);  
-    this.userName = sessionStorage.getItem('userName');
+    if(sessionStorage.getItem('userName') !== null){
+      this.userName = sessionStorage.getItem('userName');
+    }
+    
   
 
 
@@ -64,8 +67,7 @@ this.status = true;
 this.trans1 = 'rotate(-45deg) translate(-9px, 6px)';
 this.trans2 = '0';
 this.trans3 = 'rotate(45deg) translate(-8px, -8px)';
-this.expandWidth = '250px';
-this.expandHeight = '200px';
+this.expandHeight = '250px';
 }else{
   this.status = false;
   this.trans1 = '';

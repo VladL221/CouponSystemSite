@@ -19,7 +19,7 @@ export class NavBarComponent implements OnInit {
 
   customer:boolean;
 
-
+  
  
   
 

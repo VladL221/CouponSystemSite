@@ -2,6 +2,16 @@
 
 html, body { height: 100%; }
 body { 
+
+      @font-face {
+        font-family: LibreBaskerville;
+        src: url(assets/fonts/Libre_Baskerville/LibreBaskerville-Regular.ttf) format("truetype");
+        font-family: Kanit;
+        src: url(assets/fonts/Kanit/Kanit-Regular.ttf) format("truetype");
+      }
+    
+  
+
     background: rgb(0,55,62);
     background: linear-gradient(0deg, rgba(0,55,62,1) 0%, rgba(105,215,219,1) 49%, rgba(133,234,255,1) 100%);
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -1,23 +1,14 @@
 <div class="container">
-    <span class="img_title">
-       <h1 class="title">Coupons2Go</h1>
-    </span>
-    <div class="box"  [ngStyle]="{'width':expandWidth,'height':expandHeight}">
-        <!-- <span class="arrow"><mat-icon class="left_arrow">{{arrow}}</mat-icon><h4 class="expand_text">Expand</h4></span> -->
-        <span class="welcome_name"><h2>{{userName}}</h2></span>
-            <div class="login_signup" *ngIf="userName === 'Guest'"> 
-            <button class="button login" routerLink="login">SignIn</button>/<button class="button signup" routerLink="signUp">SignUp</button>
-             </div>
-             <div *ngIf="userName !== 'Guest'" >
-                  <!-- <button class="button" (click)="logOut()">SignOut</button>  --> <button  (click)="panelNav()" class="button">MyPanel</button>
-                  <!-- <button class="button" routerLink="settings">Settings</button> -->
-                 <div class="hamburgerContainer" (click)="transform()">
-                    <div class="bar1" [ngStyle]="{'transform':trans1}"></div>
-                    <div class="bar2" [ngStyle]="{'opacity':trans2}"></div>
-                    <div class="bar3" [ngStyle]="{'transform':trans3}"></div>
-                 </div>
-            </div>
-    </div>
+       <h1 id="title" routerLink="/home">Coupons2Go</h1>
+        <div class="userNav">
+            <button *ngIf="userName === 'Guest'" class="button" id="login" routerLink="/login"><mat-icon>login</mat-icon>LOG IN</button>
+            <button *ngIf="userName === 'Guest'" class="button" id="signup" routerLink="/signUp"><mat-icon>add</mat-icon>SIGN UP</button>
+            <span class="userLoggedIn" *ngIf="userName !== 'Guest' && userName !== null">
+                <span id="userBox"><p id="username">{{userName}}</p><mat-icon aria-hidden="false" aria-label="user" id="acc_icon">account_box</mat-icon></span>
+                <button class="buttonIn" routerLink="/shopPage"><mat-icon  aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>Shop</button>
+                <button class="buttonIn" routerLink="/userPanel"><mat-icon>dashboard</mat-icon>Dashboard</button>
+                <button class="buttonIn" routerLink="/settings"><mat-icon>build</mat-icon>Settings</button>
+                <button class="buttonIn" (click)="logOut()"><mat-icon>cancel</mat-icon>Log Out</button>
+            </span>
+        </div>
 </div>
-
-

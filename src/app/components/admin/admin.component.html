@@ -1,6 +1,7 @@
 
 <div>
-
+    <mat-tab-group class="tabnav">
+        <mat-tab label="Create Company">
     <form [formGroup]="createCompanyForm"> <!-- CREATE NEW COMPANY FORM - EVERYTHING IS REQUIRED + EMAIL AND PASSWORD LENGTH (MAXIMUM 12) VALIDATION -->
         <h1>Create company:</h1>
         <mat-form-field>
@@ -21,8 +22,9 @@
             <mat-error *ngIf="cComForm()['companyPassword'].errors?.maxlength && cComForm()['companyPassword'].touched">Maximum password length is 12 characters!</mat-error>
         </mat-form-field><br/><br/>
         <button mat-raised-button (click)="addNewCompany()" [disabled]="!createCompanyForm.valid">Add Company</button>
-    </form><br/>
+    </form></mat-tab><br/>
 
+    <mat-tab label="Create Customer">
     <form [formGroup]="createCustomerForm"> <!-- CREATE NEW CUSTOMER FORM - EVERYTHING IS REQUIRED-->
         <h1>Create customer:</h1>
         <mat-form-field>
@@ -49,7 +51,9 @@
         </mat-form-field><br/><br/>
         <button mat-raised-button (click)="addNewCustomer()" [disabled]="!createCustomerForm.valid">Add Customer</button>
     </form><br/>
+</mat-tab>
 
+<mat-tab label="Customer/Company Search">
     <form [formGroup]="findOneCom"> <!-- FORM TO FIND A SINGLE COMPANY OR CUSTOMER BASED ON ID -->
         <h1>Find one company or customer:</h1>
         <mat-form-field>
@@ -68,7 +72,9 @@
         </mat-form-field>
         <button mat-raised-button (click)="getOneCustomer()" [disabled]="!findOneCus.valid">🔍</button><span *ngIf="oneCustomer">ID: {{oneCustomer.customerID}} | {{oneCustomer.firstName}} {{oneCustomer.lastName}} | {{oneCustomer.email}}, {{oneCustomer.password}}</span>
     </form><br/>
+</mat-tab>
 
+<mat-tab label="All companies">
     <h1>All companies:</h1><button mat-raised-button (click)="getAllCompanies()">Refresh</button> <!-- REFRESH BUTTON EVEN IF WE USE NGONINIT -->
     <ul>
         <li *ngFor="let company of companies">ID: {{company.companyID}} | {{company.name}} | {{company.email}}, {{company.password}}
@@ -76,6 +82,7 @@
             <button mat-raised-button (click)="deleteCompany(company.companyID)">Delete</button> <!-- DELETE COMPANY -->
         </li>
     </ul><br/>
+
     <form [formGroup]="updateCompanyForm" *ngIf="updateCom === true"> <!-- UPDATE FORM ONLY OPENS WHEN YOU CLICK UPDATE ABOVE ^^^ -->
         <mat-form-field>
             <mat-label>Update name</mat-label>
@@ -96,7 +103,9 @@
         </mat-form-field><br/><br/>
         <button mat-raised-button (click)="updateCompany()" [disabled]="!updateCompanyForm.valid">Update</button><button mat-raised-button (click)="updateComClose()">Cancel</button>
     </form><br/>
+</mat-tab>
 
+<mat-tab label="All customers">
     <h1>All customers</h1><button mat-raised-button (click)="getAllCustomers()">Refresh</button> <!-- REFRESH BUTTON EVEN IF WE USE NGONINIT -->
     <ul>
         <li *ngFor="let customer of customers">ID: {{customer.customerID}} | {{customer.firstName}} {{customer.lastName}} | {{customer.email}}, {{customer.password}}
@@ -129,9 +138,12 @@
         </mat-form-field><br/><br/>
         <button mat-raised-button (click)="updateCustomer()" [disabled]="!updateCustomerForm.valid">Update</button><button mat-raised-button (click)="updateCusClose()">Cancel</button>
     </form><br/>
+</mat-tab>
 
+<mat-tab label="All loggs">
     <button (click)="goLogs()">Loggs</button>
-
+</mat-tab>
+</mat-tab-group>
 </div>
 
 

@@ -1,6 +1,25 @@
-<h1>All coupons:</h1>
+<h1>add grid so coupons strech to right and fill empty spaces</h1>
 <ul>
-    <li *ngFor="let coupon of coupon"> <img src="assets\Coup.png" alt="none"> TITLE: {{coupon.title}}, DESC:  {{coupon.description}} , {{coupon.startDate}} - {{coupon.endDate}} , Amount: {{coupon.amount}}, price: {{coupon.price}} , image: {{coupon.image}},  Category: {{coupon.category}}
+    <li *ngFor="let coupon of coupon"><mat-card class="example-card">
+        <mat-card-header>
+          <div mat-card-avatar class="avatarIcon"><mat-icon>loyalty</mat-icon></div>
+          <mat-card-title>Name: {{coupon.title}}</mat-card-title>
+          <mat-card-subtitle>Category: {{coupon.category}}, Price: {{coupon.price}}, Stock: {{coupon.amount}}.</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="assets\Coup.png" alt="none" class="imageSize">
+        <mat-card-content>
+          <p>Description: {{coupon.description}}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button>Buy</button>
+          <button mat-button>More detail</button>
+        </mat-card-actions>
+        <mat-card-footer>
+            Valid from: {{coupon.startDate}}, Expires: {{coupon.endDate}}.
+        </mat-card-footer>
+      </mat-card>
         <input type="button" value="Buy" (click)="buyCoupon(coupon)" *ngIf="userType === 'customer'"/>
     </li>
-</ul><br/>
+</ul>
+<br/>
+
