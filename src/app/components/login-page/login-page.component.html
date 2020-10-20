@@ -1,6 +1,6 @@
-<div>
-    <form [formGroup]="loginForm">
-        <mat-form-field>
+<div class="container">
+    <form [formGroup]="loginForm" class="form">
+        <mat-form-field >
             <mat-label>
                 Email
             </mat-label>
@@ -26,8 +26,8 @@
             <input type="text" matInput formControlName="clientType"/> -->
         </mat-form-field><br/>
         <br/>
-        <button (click)="login2()">Login</button>
+        <button (click)="login2()" id="login">Login</button>
     </form>
     <br/>
-    <button (click)="logout()">Logout</button>
+    
 </div>

@@ -1,9 +1,5 @@
 <div class="container">
     <mat-tab-group class="tabnav">
-        <mat-tab label="your Info"> <span>
-            <button mat-raised-button (click)="showDetails()">Your information</button>
-            <span *ngIf="company"> Company name: {{company.name}} | Email: {{company.email}} | Password: {{company.password}}</span>
-           </span> </mat-tab>
         <mat-tab label="Create Coupon">
              <form [formGroup]="createCouponForm">
             <h1>Create coupon:</h1>

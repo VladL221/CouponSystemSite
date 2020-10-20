@@ -1,5 +1,56 @@
-:host {
+
+.container{
+
+    
+    margin-top: 80px;
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    padding: 20px;
+   background-color: black;
+    border-radius: 20px;
+    border-color:  #00d2d3;
+
+
+}
+
+.form{
+    border-style: solid;
+    background-color: white;
+    border-color: white;
+    outline: none;
+    background-color:white;
+    border: none;
+    padding: 1px;
     text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0pt 0pt 1pt 2pt #00d2d3;
+    text-shadow: 0px 0px 1pt 2pt white;
+    border-radius: 5px;
+}
 
-
+#login{
+    outline: none;
+    background-color:#2d3436;
+    border: none;
+    color: white;
+    padding: 1px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    cursor: pointer;
+    border-radius: 8px;
+    width: 120px;
+    box-shadow: 0pt 0pt 1pt 2pt #00d2d3;
+    height: 35px;
+    text-shadow: 0px 0px 1pt 2pt white;
+    margin-top: auto;
+    margin-bottom: 8px;
+    font-family: 'Kanit',sans-serif;
+    font-weight: 600;
+    margin-right: auto;
+    margin-left: auto;
 }

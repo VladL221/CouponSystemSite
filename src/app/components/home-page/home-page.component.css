@@ -25,7 +25,14 @@ order: 1;
 order: 2;
 }
 
-.test{
- 
-}
 
+.homepage{
+    font-size: 20px;
+    font-weight: 600;
+}
+#icon{
+    font-size: 50px;
+    padding-left: 20px;
+    vertical-align: super;
+    
+}

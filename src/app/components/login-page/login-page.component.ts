@@ -99,12 +99,6 @@ export class LoginPageComponent implements OnInit {
   }
   }
 
-  public logout(){
-    this.loginService.badLogin();
-    this.newUserName("Guest");
-    this.route.navigateByUrl('/');
-  }
-
   public getUser(){
      this.loginUser = new User(this.loginForm.controls['email'].value, this.loginForm.controls['password'].value,this.loginForm.controls['clientType'].value);
      return this.loginUser;

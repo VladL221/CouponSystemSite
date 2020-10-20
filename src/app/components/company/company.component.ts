@@ -171,13 +171,6 @@ export class CompanyComponent implements OnInit {
     });
   }
 
-  // SHOW LOGGED IN COMPANY DETAILS
-  public showDetails() {
-    this.companyService.companyDetails(this.loginService.getUserToken()).subscribe((company)=>{
-      this.company = company;
-    }, (err)=>{
-    });
-  }
 
   public cCouForm() {
     return this.createCouponForm.controls;

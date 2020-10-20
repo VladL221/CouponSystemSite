@@ -7,7 +7,7 @@
                 <span id="userBox" ><p id="username">{{userName}}</p><mat-icon aria-hidden="false" aria-label="user" id="acc_icon">account_box</mat-icon></span>
                 <button class="buttonIn" routerLink="/shopPage"><mat-icon  aria-hidden="false" aria-label="cart">shopping_cart</mat-icon>Shop</button>
                 <button class="buttonIn" routerLink="/userPanel"><mat-icon>dashboard</mat-icon>Dashboard</button>
-                <button class="buttonIn" routerLink="/settings"><mat-icon>build</mat-icon>Settings</button>
+                <button class="buttonIn" *ngIf="userName !== 'Admin'" routerLink="/settings"><mat-icon>build</mat-icon>Settings</button>
                 <button class="buttonIn" (click)="logOut()"><mat-icon>cancel</mat-icon>Log Out</button>
             </span>
         </div>

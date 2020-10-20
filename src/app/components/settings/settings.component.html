@@ -1,1 +1,31 @@
-<p>settings works!</p>
+<div class="container">
+    <!-- company -->
+    <span *ngIf="comp === true">
+        <H2>
+            Company Name: {{company.name}}
+        </H2>
+        <h2>
+            Company Email: {{company.email}}
+        </h2>
+        <h2>
+            Company Password:   {{company.password}}
+        </h2>
+    </span>
+    <!-- customer -->
+    <span *ngIf="cust === true">
+        <h2>
+            First Name: {{customer.firstName}}
+        </h2>
+        <h2>
+            Last Name:  {{customer.lastName}}
+        </h2>
+        <h2>
+            Email:  {{customer.email}}
+        </h2>
+        <h2>
+            Password:   {{customer.password}}
+        </h2>
+    </span>
+    <br/>
+    <button (click)="change()">Request Change</button>
+</div>

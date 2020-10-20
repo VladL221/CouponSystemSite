@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit{
       
       this.loginService.currentUserName.subscribe(res => this.userName = res);
     
-    
+  
 
 
 
